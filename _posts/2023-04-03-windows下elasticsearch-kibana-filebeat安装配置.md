@@ -20,8 +20,6 @@ D:\Deploy\Elastic\filebeat\8.6.2\
 2.修改配置 D:\Deploy\Elastic\search\8.6.2\bin\elasticsearch-env 8.6.2及以后版本不需要，之前版本未测试
 　　
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
-
 ```
 if [ ! -z "$JAVA_HOME" ]; then
 JAVA="$JAVA_HOME/bin/java"
@@ -31,14 +29,12 @@ if [ ! -z "$ES_JAVA_HOME" ]; then
 JAVA="$ES_JAVA_HOME/bin/java"
 JAVA_TYPE="ES_JAVA_HOME"
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
 3.修改配置 D:\Deploy\Elastic\search\8.6.2\config\elasticsearch.yml
 　　
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 #设置快照存储地址
@@ -70,7 +66,6 @@ http.cors.enabled: true
 #跨域访问允许的域名地址
 http.cors.allow-origin: "*"
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
@@ -95,7 +90,6 @@ http.cors.allow-origin: "*"
 　　执行输出如下：
 　　　　
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 C:\Users\Administrator>cd /D D:\Deploy\Elastic\search\8.6.2\bin &amp;&amp; elasticsearch-service.bat install
@@ -110,7 +104,6 @@ Using ES_JAVA_HOME : D:\Deploy\Elastic\search\8.6.2\jdk
 [2023-04-01 10:48:38] [info] ( prunsrv.c:2086) [30124] Apache Commons Daemon procrun finished.
 The service 'elasticsearch-service-x64' has been installed
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
@@ -134,7 +127,6 @@ The service 'elasticsearch-service-x64' has been installed
 　　7.9.在 D:\Deploy\Elastic\search\8.6.2\config\elasticsearch.yml 文件中增加配置：
 　　　　
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 #开启xpack
@@ -147,7 +139,6 @@ xpack.security.transport.ssl.client_authentication: required
 xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12
 xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
@@ -161,7 +152,6 @@ xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12
 　　执行输出如下：
 　　　　
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 D:\Deploy\Elastic\search\8.6.2\bin>cd /D D:\Deploy\Elastic\search\8.6.2\bin &amp;&amp; elasticsearch-setup-passwords interactive
@@ -198,13 +188,11 @@ Changed password for user [beats_system]
 Changed password for user [remote_monitoring_user]
 Changed password for user [elastic]
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
 10.访问elasticsearch：http://127.0.0.1:9200，输入账户和密码(elastic/password(步骤9设置的密码))，输出如下
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 {
@@ -225,7 +213,6 @@ Changed password for user [elastic]
 "tagline" : "You Know, for Search"
 }
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
@@ -235,7 +222,6 @@ Changed password for user [elastic]
 
 1.更改配置 D:\Deploy\Elastic\kibana\8.6.2\config\kibana.yml 文件，在文件末尾增加如下配
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 #设置中文显示
@@ -255,7 +241,6 @@ server.host: "0.0.0.0"
 server.port: 5601
 #server.publicBaseUrl: "http://127.0.0.1:5601/"
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
@@ -278,7 +263,6 @@ server.port: 5601
 
  1.更改配置filebeat.yml
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 filebeat.inputs:
@@ -296,7 +280,6 @@ password: "password" #elasticsearch步骤9设置的密码
 #/var/log/*.log：获取/var/log目录下所有以.log结尾的文件。
 #/var/log/*/*.log：获取/var/log的子文件夹下所有的以.log结尾的文件。不会从/var/log文件夹本身抓取，不可能递归地抓取指定目录的子目录下文件。
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 

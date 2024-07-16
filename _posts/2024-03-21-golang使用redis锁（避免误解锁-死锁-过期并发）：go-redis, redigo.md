@@ -3,7 +3,6 @@
 
 【go-redis】简单实现方式，不会死锁/误解锁
 
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 package main
@@ -51,12 +50,9 @@ func UnlockGoRedis(key string, val string) {
     }
 }
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 缺点：不能自动展期，当业务处理时间超过锁定时长时，会被其他业务或客户端拿到锁，造成并发。
 加个自动续期
-
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 func LockGoRedis(key string, val string, sec int, autoDelay bool) bool {
@@ -88,15 +84,12 @@ func LockGoRedis(key string, val string, sec int, autoDelay bool) bool {
     return res
 }
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
  
 
  
 
 【redigo】版
-
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
 
 ```
 // 加锁 sec:锁定秒数(避免死锁),value 锁唯一值(避免误解锁)
@@ -155,4 +148,3 @@ func UnlockRedigo(key string, val string) {
     }
 }
 ```
-[![复制代码](https://assets.cnblogs.com/images/copycode.gif )](javascript:void(0); "复制代码")
